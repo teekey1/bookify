@@ -23,7 +23,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    @Column(name = "company_id")
+    @JoinColumn(name = "company_id")
     @ManyToOne
     private Company company;
 

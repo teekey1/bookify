@@ -18,7 +18,7 @@ public class Company {
     @GeneratedValue
     private Long id;
     private String name;
-    @Column(name = "category_id")
+    @JoinColumn (name = "category_id")
     @ManyToOne
     private Category category;
 

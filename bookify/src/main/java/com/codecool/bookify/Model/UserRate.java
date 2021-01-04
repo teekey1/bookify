@@ -16,10 +16,10 @@ public class UserRate {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
-    @Column(name = "company_id")
+    @JoinColumn(name = "company_id")
     @ManyToOne
     private Company company;
     private int rate;

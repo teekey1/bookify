@@ -17,7 +17,7 @@ public class CompanyDetail {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "company_id")
+    @JoinColumn(name = "company_id")
     @ManyToOne
     private Company company;
     private String city;

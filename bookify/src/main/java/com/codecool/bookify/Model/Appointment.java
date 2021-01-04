@@ -21,13 +21,13 @@ public class Appointment {
     private Date start_datetime;
     private Date end_datetime;
     private int price;
-    @Column(name = "client_id")
+    @JoinColumn(name = "client_id")
     @ManyToOne
     private User client;
-    @Column(name = "employee_id")
+    @JoinColumn (name = "employee_id")
     @ManyToOne
     private User employee;
-    @Column(name = "company_detail_id")
+    @JoinColumn (name = "company_detail_id")
     @ManyToOne
     private CompanyDetail companyDetail;
 
