@@ -29,4 +29,6 @@ public class Role {
     public enum UserRoleEnum {
         ADMIN, USER, EMPLOYEE, OWNER
     }
+
+
 }
