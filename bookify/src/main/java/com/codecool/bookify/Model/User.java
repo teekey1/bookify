@@ -17,6 +17,7 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    private Boolean active;
     private String phone;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
