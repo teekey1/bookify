@@ -17,8 +17,9 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    private Boolean active;
     private String phone;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -33,4 +34,5 @@ public class User {
         this.phone = phone;
         this.company = company;
     }
+
 }
