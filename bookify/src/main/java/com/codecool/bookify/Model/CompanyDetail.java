@@ -1,6 +1,8 @@
 package com.codecool.bookify.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,15 +17,21 @@ import javax.persistence.*;
 public class CompanyDetail {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     @ManyToOne
+    @JsonIgnoreProperties({"id"})
     private Company company;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String zip_code;
+    @Column(nullable = false)
     private String street;
+    @Column(nullable = false)
     private int street_number;
+    @Column(nullable = false)
     private String phone;
 
     public CompanyDetail(Company company, String city, String zip_code, String street, int street_number, String phone) {

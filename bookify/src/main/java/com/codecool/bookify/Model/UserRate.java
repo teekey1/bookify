@@ -1,5 +1,6 @@
 package com.codecool.bookify.Model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,14 +15,15 @@ import javax.persistence.*;
 public class UserRate {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne
     private User user;
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     @ManyToOne
     private Company company;
+    @Column(nullable = false)
     private int rate;
     private String comment;
 

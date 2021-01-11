@@ -1,6 +1,5 @@
 package com.codecool.bookify.Model;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,18 +15,21 @@ import java.util.Date;
 public class Appointment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private Date start_datetime;
+    @Column(nullable = false)
     private Date end_datetime;
+    @Column(nullable = false)
     private int price;
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     @ManyToOne
     private User client;
-    @JoinColumn (name = "employee_id")
+    @JoinColumn (name = "employee_id", nullable = false)
     @ManyToOne
     private User employee;
-    @JoinColumn (name = "company_detail_id")
+    @JoinColumn (name = "company_detail_id", nullable = false)
     @ManyToOne
     private CompanyDetail companyDetail;
 

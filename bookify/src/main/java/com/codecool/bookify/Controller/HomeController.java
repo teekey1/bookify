@@ -1,5 +1,4 @@
-package com.codecool.bookify;
-
+package com.codecool.bookify.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
