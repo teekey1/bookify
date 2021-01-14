@@ -1,7 +1,7 @@
-package com.codecool.bookify.Security;
+package com.codecool.bookify.security;
 
-import com.codecool.bookify.Model.Role;
-import com.codecool.bookify.Model.User;
+import com.codecool.bookify.model.Role;
+import com.codecool.bookify.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.isActive = user.getIsActive();
+        this.isActive = user.isActive();
         for (Role role : user.getRoles()) {
             String role1 = "ROLE_" + role.getName();
             authorities.add(new SimpleGrantedAuthority(role1));

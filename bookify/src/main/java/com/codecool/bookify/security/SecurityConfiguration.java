@@ -1,6 +1,6 @@
-package com.codecool.bookify.Security;
+package com.codecool.bookify.security;
 
-import com.codecool.bookify.Service.MyUserDetailsService;
+import com.codecool.bookify.service.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

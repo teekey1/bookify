@@ -1,6 +1,5 @@
-package com.codecool.bookify.Model;
+package com.codecool.bookify.model;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

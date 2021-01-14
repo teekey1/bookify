@@ -1,4 +1,4 @@
-package com.codecool.bookify.Exceptions;
+package com.codecool.bookify.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
