@@ -1,13 +1,14 @@
-package com.codecool.bookify.Controller;
+package com.codecool.bookify.controller;
 
-import com.codecool.bookify.Model.Category;
-import com.codecool.bookify.Service.CategoryService;
+import com.codecool.bookify.model.Category;
+import com.codecool.bookify.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/categories")
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -16,27 +17,27 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categories")
+    @GetMapping()
     public List<Category> getCategory(){
         return categoryService.getAll();
     }
 
-    @GetMapping("categories/{id}")
+    @GetMapping(value = "/{id}")
     public Category getCategory(@PathVariable Long id){
         return categoryService.getById(id);
     }
 
-    @DeleteMapping("categories/{id}")
+    @DeleteMapping(value = "/{id}")
     public void removeCategory(@PathVariable Long id) {
         categoryService.delete(id);
     }
 
-    @PostMapping("/categories")
+    @PostMapping()
     public void addCategory(@RequestBody Category category){
         categoryService.insert(category);
     }
 
-    @PutMapping("/categories/{id}")
+    @PutMapping(value = "/{id}")
     public void updateCategory(@RequestBody Category category, @PathVariable Long id) {
     }
 }

@@ -1,13 +1,14 @@
-package com.codecool.bookify.Controller;
+package com.codecool.bookify.controller;
 
-import com.codecool.bookify.Model.Company;
-import com.codecool.bookify.Service.CompanyService;
+import com.codecool.bookify.model.Company;
+import com.codecool.bookify.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/companies")
 public class CompanyController {
     private final CompanyService companyService;
 
@@ -16,27 +17,27 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @GetMapping("/companies")
+    @GetMapping()
     public List<Company> getCompany(){
         return companyService.getAll();
     }
 
-    @GetMapping("companies/{id}")
+    @GetMapping(value = "/{id}")
     public Company getCompany(@PathVariable Long id){
         return companyService.getById(id);
     }
 
-    @DeleteMapping("companies/{id}")
+    @DeleteMapping(value = "/{id}")
     public void removeCompany(@PathVariable Long id) {
         companyService.delete(id);
     }
 
-    @PostMapping("/companies")
+    @PostMapping()
     public void addCompany(@RequestBody Company company){
         companyService.insert(company);
     }
 
-    @PutMapping("/companies/{id}")
+    @PutMapping(value = "/{id}")
     public void updateCompany(@RequestBody Company company, @PathVariable Long id) {
     }
 }

@@ -1,13 +1,14 @@
-package com.codecool.bookify.Controller;
+package com.codecool.bookify.controller;
 
-import com.codecool.bookify.Model.Role;
-import com.codecool.bookify.Service.RoleService;
+import com.codecool.bookify.model.Role;
+import com.codecool.bookify.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/roles")
 public class RoleController {
 
     private final RoleService roleService;
@@ -17,27 +18,27 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/roles")
+    @GetMapping()
     public List<Role> getRoles(){
         return roleService.getAll();
     }
 
-    @GetMapping("roles/{id}")
+    @GetMapping(value = "/{id}")
     public Role getRole(@PathVariable Long id){
         return roleService.getById(id);
     }
 
-    @DeleteMapping("roles/{id}")
+    @DeleteMapping(value = "/{id}")
     public void removeRole(@PathVariable Long id) {
         roleService.delete(id);
     }
 
-    @PostMapping("/roles")
+    @PostMapping()
     public void addRole(@RequestBody Role role){
         roleService.insert(role);
     }
 
-    @PutMapping("/roles/{id}")
+    @PutMapping(value = "/{id}")
     public void updateRole(@RequestBody Role user, @PathVariable Long id) {
     }
 }

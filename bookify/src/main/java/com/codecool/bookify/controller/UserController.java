@@ -1,13 +1,14 @@
-package com.codecool.bookify.Controller;
+package com.codecool.bookify.controller;
 
-import com.codecool.bookify.Model.User;
-import com.codecool.bookify.Service.UserService;
+import com.codecool.bookify.model.User;
+import com.codecool.bookify.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -16,27 +17,27 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping()
     public List<User> getUsers(){
         return userService.getAll();
     }
 
-    @GetMapping("users/{id}")
+    @GetMapping(value = "/{id}")
     public User getUser(@PathVariable Long id){
         return userService.getById(id);
     }
 
-    @DeleteMapping("users/{id}")
+    @DeleteMapping(value = "/{id}")
     public void removeUser(@PathVariable Long id) {
         userService.delete(id);
     }
 
-    @PostMapping("/users")
+    @PostMapping()
     public void addUser(@RequestBody User user){
         userService.insert(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping(value = "/{id}")
     public void updateUser(@RequestBody User user, @PathVariable Long id) {
     }
 }

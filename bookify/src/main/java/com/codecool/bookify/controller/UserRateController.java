@@ -1,13 +1,13 @@
-package com.codecool.bookify.Controller;
+package com.codecool.bookify.controller;
 
-import com.codecool.bookify.Model.UserRate;
-import com.codecool.bookify.Service.UserRateService;
+import com.codecool.bookify.model.UserRate;
+import com.codecool.bookify.service.UserRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
+@RequestMapping("/users-rates")
 public class UserRateController {
     private final UserRateService userRateService;
 
@@ -16,27 +16,27 @@ public class UserRateController {
         this.userRateService = userRateService;
     }
 
-    @GetMapping("/users-rates")
+    @GetMapping()
     public List<UserRate> getUsersRates(){
         return userRateService.getAll();
     }
 
-    @GetMapping("users-rates/{id}")
+    @GetMapping(value = "/{id}")
     public UserRate getUserRate(@PathVariable Long id){
         return userRateService.getById(id);
     }
 
-    @DeleteMapping("users-rates/{id}")
+    @DeleteMapping(value = "/{id}")
     public void removeUserRate(@PathVariable Long id) {
         userRateService.delete(id);
     }
 
-    @PostMapping("/users-rates")
+    @PostMapping()
     public void addUserRate(@RequestBody UserRate userRate){
         userRateService.insert(userRate);
     }
 
-    @PutMapping("/users-rates/{id}")
+    @PutMapping(value = "/{id}")
     public void updateUserRate(@RequestBody UserRate userRate, @PathVariable Long id) {
     }
 }
