@@ -1,4 +1,4 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
 import java.util.List;
 

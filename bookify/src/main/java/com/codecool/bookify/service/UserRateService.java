@@ -1,8 +1,8 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
-import com.codecool.bookify.Exceptions.NotFoundException;
-import com.codecool.bookify.Model.UserRate;
-import com.codecool.bookify.Repository.UserRateRepository;
+import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.UserRate;
+import com.codecool.bookify.repository.UserRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

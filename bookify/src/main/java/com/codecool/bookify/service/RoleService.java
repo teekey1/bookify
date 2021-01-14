@@ -1,8 +1,8 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
-import com.codecool.bookify.Exceptions.NotFoundException;
-import com.codecool.bookify.Model.Role;
-import com.codecool.bookify.Repository.RoleRepository;
+import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.Role;
+import com.codecool.bookify.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

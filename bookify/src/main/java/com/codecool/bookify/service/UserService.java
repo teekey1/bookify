@@ -1,23 +1,30 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
-import com.codecool.bookify.Exceptions.NotFoundException;
-import com.codecool.bookify.Model.User;
-import com.codecool.bookify.Repository.UserRepository;
+import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.User;
+import com.codecool.bookify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements HelperService<User> {
 
     protected UserRepository userRepository;
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+//    @Autowired
+//    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder) {
+//        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//    }
 
     @Override
     public List<User> getAll() {
@@ -26,9 +33,7 @@ public class UserService implements HelperService<User> {
 
     @Override
     public User getById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) return user.get();
-        throw new NotFoundException();
+        return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Override
@@ -37,7 +42,9 @@ public class UserService implements HelperService<User> {
 
     @Override
     public void insert(User user) {
+        user.setId(null);
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setActive(true);
         userRepository.save(user);
     }
 

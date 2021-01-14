@@ -1,8 +1,8 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
-import com.codecool.bookify.Model.User;
-import com.codecool.bookify.Security.MyUserDetails;
-import com.codecool.bookify.Repository.UserRepository;
+import com.codecool.bookify.model.User;
+import com.codecool.bookify.security.MyUserDetails;
+import com.codecool.bookify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

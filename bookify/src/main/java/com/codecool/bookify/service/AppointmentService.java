@@ -1,8 +1,8 @@
-package com.codecool.bookify.Service;
+package com.codecool.bookify.service;
 
-import com.codecool.bookify.Exceptions.NotFoundException;
-import com.codecool.bookify.Model.Appointment;
-import com.codecool.bookify.Repository.AppointmentRepository;
+import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.Appointment;
+import com.codecool.bookify.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
