@@ -26,9 +26,7 @@ public class RoleService implements HelperService<Role>{
 
     @Override
     public Role getById(Long id) {
-        Optional<Role> role = roleRepository.findById(id);
-        if (role.isPresent()) return role.get();
-        throw new NotFoundException();
+        return roleRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Override
