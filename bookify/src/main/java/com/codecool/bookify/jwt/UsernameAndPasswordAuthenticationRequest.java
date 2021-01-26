@@ -2,18 +2,18 @@ package com.codecool.bookify.jwt;
 
 public class UsernameAndPasswordAuthenticationRequest {
 
-    private String email;
+    private String username;
     private String password;
 
     public UsernameAndPasswordAuthenticationRequest() {
     }
 
     public String getUsername() {
-        return email;
+        return username;
     }
 
-    public void setUsername(String email) {
-        this.email = email;
+    public void setEmail(String email) {
+        this.username = email;
     }
 
     public String getPassword() {

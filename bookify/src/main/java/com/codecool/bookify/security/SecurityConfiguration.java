@@ -2,7 +2,7 @@ package com.codecool.bookify.security;
 
 import com.codecool.bookify.auth.ApplicationUserService;
 import com.codecool.bookify.jwt.JwtConfig;
-//import com.codecool.bookify.jwt.JwtTokenVerifier;
+import com.codecool.bookify.jwt.JwtTokenVerifier;
 import com.codecool.bookify.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,21 +53,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .csrf().disable()
-                .formLogin().and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-//                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-//                .antMatchers("/css/**", "/js/**", "/register", "/index").permitAll()
+                .antMatchers("/css/**", "/js/**", "/register", "/index").permitAll()
 //                .antMatchers("/admin").hasRole(ADMIN.name())
                 .antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated();
-//                .and().formLogin();
-
-
     }
 
     @Override
