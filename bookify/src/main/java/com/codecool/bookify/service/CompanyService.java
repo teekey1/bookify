@@ -44,4 +44,8 @@ public class CompanyService implements HelperService<Company>{
     public void delete(Long id) {
         companyRepository.deleteById(id);
     }
+
+    public List<Company> getCompaniesByCategoryId(Long id) {
+        return companyRepository.findByCategoryId(id);
+    }
 }

@@ -16,8 +16,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.SecretKey;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static com.codecool.bookify.security.ApplicationUserRole.*;
 
 @Configuration
 @EnableWebSecurity
@@ -80,5 +87,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.applyPermitDefaultValues();
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type", "x-auth-token"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/login", configuration);
+        source.registerCorsConfiguration("/users", configuration);
+        source.registerCorsConfiguration("/register", configuration);
+        source.registerCorsConfiguration("/", configuration);
+        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/categories", configuration);
+        source.registerCorsConfiguration("/categories/**", configuration);
+        source.registerCorsConfiguration("/companies/**", configuration);
+        source.registerCorsConfiguration("/swagger-ui.html", configuration);
+
+        return source;
+    }
+
 }
 

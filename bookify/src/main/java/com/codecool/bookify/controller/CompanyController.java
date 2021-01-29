@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
@@ -39,5 +40,11 @@ public class CompanyController {
 
     @PutMapping(value = "/{id}")
     public void updateCompany(@RequestBody Company company, @PathVariable Long id) {
+    }
+
+
+    @GetMapping("/category/{id}")
+    public List<Company> getCompaniesByCategoryId(@PathVariable Long id) {
+        return companyService.getCompaniesByCategoryId(id);
     }
 }

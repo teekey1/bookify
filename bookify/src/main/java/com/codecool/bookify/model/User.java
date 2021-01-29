@@ -36,11 +36,12 @@ public class User {
     @ManyToOne
     private Company company;
 
-    public User(String email, String password, String phone, Company company) {
+    public User(String email, String password, String phone, Company company, boolean isActive) {
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.company = company;
+        this.isActive = isActive;
     }
 
 }
