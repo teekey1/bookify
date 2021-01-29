@@ -16,15 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.SecretKey;
-import java.util.Arrays;
-import java.util.Collections;
-
-import static com.codecool.bookify.security.ApplicationUserRole.*;
 
 @Configuration
 @EnableWebSecurity
@@ -60,10 +53,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/register", "/index").permitAll()
-//                .antMatchers("/admin").hasRole(ADMIN.name())
-                .antMatchers("/").permitAll()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/").permitAll();
+//                .anyRequest()
+//                .authenticated();
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**");
     }
 
     @Override
