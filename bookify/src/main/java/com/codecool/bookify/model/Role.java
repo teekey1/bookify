@@ -21,7 +21,7 @@ public class Role {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", cascade = {CascadeType.ALL})
     @JsonIgnore
     private Set<User> users = new HashSet<>();
 

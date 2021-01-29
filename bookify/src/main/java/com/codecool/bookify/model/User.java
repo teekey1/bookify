@@ -1,7 +1,9 @@
 package com.codecool.bookify.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
@@ -22,15 +24,13 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-    private Boolean active;
     private String phone;
     @Column(nullable = false)
     private boolean isActive;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonIgnoreProperties({"id"})
     private Set<Role> roles = new HashSet<>();
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     @ManyToOne

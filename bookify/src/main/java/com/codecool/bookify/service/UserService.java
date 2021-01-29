@@ -49,17 +49,18 @@ public class UserService implements HelperService<User> {
 
     @Override
     public void insert(User user) {
-        user.setId(null);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        user.setActive(true);
-//        user.getRoles().addAll(
-//                user.getRoles()
-//                        .stream()
-//                        .map(u -> {
-//                            Role role = roleService.getById(u.getId());
-//                            role.getUsers().add(user);
-//                            return role;
-//                        }).collect(Collectors.toSet()));
+        User newUser = new User();
+        newUser.setId(null);
+        newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        newUser.setActive(true);
+        newUser.getRoles().addAll(
+                user.getRoles()
+                        .stream()
+                        .map(u -> {
+                            Role role = roleService.getById(u.getId());
+                            role.getUsers().add(user);
+                            return role;
+                        }).collect(Collectors.toSet()));
         userRepository.save(user);
     }
 
