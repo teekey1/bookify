@@ -42,4 +42,8 @@ public class RoleService implements HelperService<Role>{
     public void delete(Long id) {
         roleRepository.deleteById(id);
     }
+
+    public Role findByName(String name){
+        return roleRepository.findByName(name);
+    }
 }

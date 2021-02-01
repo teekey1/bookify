@@ -58,7 +58,7 @@ public class UserService implements HelperService<User> {
                 user.getRoles()
                         .stream()
                         .map(u -> {
-                            Role role = roleService.getById(u.getId());
+                            Role role = roleService.findByName(u.getName());
                             role.getUsers().add(user);
                             return role;
                         }).collect(Collectors.toSet()));
