@@ -5,6 +5,7 @@ import com.codecool.bookify.model.Role;
 import com.codecool.bookify.model.User;
 import com.codecool.bookify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,10 @@ import java.util.stream.Collectors;
 public class UserService implements HelperService<User> {
 
     protected UserRepository userRepository;
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private RoleService roleService;
-
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -29,8 +28,8 @@ public class UserService implements HelperService<User> {
     }
 
 //    @Autowired
-//    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 //    }
 
     @Override
@@ -51,7 +50,9 @@ public class UserService implements HelperService<User> {
     public void insert(User user) {
         User newUser = new User();
         newUser.setId(null);
+        newUser.setEmail(user.getEmail());
         newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        newUser.setPhone(user.getPhone());
         newUser.setActive(true);
         newUser.getRoles().addAll(
                 user.getRoles()
@@ -61,7 +62,7 @@ public class UserService implements HelperService<User> {
                             role.getUsers().add(user);
                             return role;
                         }).collect(Collectors.toSet()));
-        userRepository.save(user);
+        userRepository.save(newUser);
     }
 
     @Override

@@ -60,9 +60,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/register", "/index").permitAll()
-                .antMatchers("/").permitAll();
-//                .anyRequest()
-//                .authenticated();
+                .antMatchers("/").permitAll()
+//                .antMatchers("/categories").authenticated()
+                .anyRequest()
+                .authenticated();
     }
 
     @Override
@@ -72,6 +73,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
+//                "/categories",
+//                "/companies/**",
                 "/webjars/**");
     }
 
@@ -105,7 +108,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/categories", configuration);
         source.registerCorsConfiguration("/categories/**", configuration);
         source.registerCorsConfiguration("/companies/**", configuration);
-        source.registerCorsConfiguration("/swagger-ui.html", configuration);
 
         return source;
     }
