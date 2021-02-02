@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.crypto.SecretKey;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import static com.codecool.bookify.security.ApplicationUserRole.*;
 @Configuration
 @EnableWebSecurity
 //@RequiredArgsConstructor
+@EnableSwagger2
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -60,10 +62,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/register", "/index").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/").permitAll();
 //                .antMatchers("/categories").authenticated()
-                .anyRequest()
-                .authenticated();
+//                .anyRequest()
+//                .authenticated();
     }
 
     @Override
@@ -108,6 +110,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/categories", configuration);
         source.registerCorsConfiguration("/categories/**", configuration);
         source.registerCorsConfiguration("/companies/**", configuration);
+        source.registerCorsConfiguration("/swagger-ui.html", configuration);
 
         return source;
     }
