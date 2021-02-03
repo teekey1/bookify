@@ -48,4 +48,8 @@ public class CompanyService implements HelperService<Company>{
     public List<Company> getCompaniesByCategoryId(Long id) {
         return companyRepository.findByCategoryId(id);
     }
+
+    public Company getCompanyByName(String name) {
+        return companyRepository.findByName(name);
+    }
 }

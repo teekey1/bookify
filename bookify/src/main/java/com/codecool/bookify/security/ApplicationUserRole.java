@@ -10,6 +10,7 @@ import static com.codecool.bookify.security.ApplicationUserPermission.*;
 
 public enum ApplicationUserRole {
     USER(Sets.newHashSet()),
+    OWNER(Sets.newHashSet()),
     ADMIN(Sets.newHashSet(APPOINTMENT_READ,
             APPOINTMENT_WRITE,
             CATEGORY_READ,

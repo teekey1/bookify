@@ -47,4 +47,9 @@ public class CompanyController {
     public List<Company> getCompaniesByCategoryId(@PathVariable Long id) {
         return companyService.getCompaniesByCategoryId(id);
     }
+
+    @GetMapping("/name/{name}")
+    public Company getCompanyByName(@PathVariable String name) {
+        return companyService.getCompanyByName(name);
+    }
 }
