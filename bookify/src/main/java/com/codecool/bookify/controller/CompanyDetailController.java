@@ -1,5 +1,6 @@
 package com.codecool.bookify.controller;
 
+import com.codecool.bookify.model.Company;
 import com.codecool.bookify.model.CompanyDetail;
 import com.codecool.bookify.service.CompanyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/company-details")
+@RequestMapping("/company_details")
 public class CompanyDetailController {
     private final CompanyDetailService companyDetailService;
 
@@ -40,4 +41,10 @@ public class CompanyDetailController {
     @PutMapping(value = "/{id}")
     public void updateCompanyDetail(@RequestBody CompanyDetail companyDetail, @PathVariable Long id) {
     }
+
+    @GetMapping("/company/{id}")
+    public CompanyDetail getCompaniesByCategoryId(@PathVariable Long id) {
+        return companyDetailService.getCompanyDetailsByCompanyId(id);
+    }
+
 }

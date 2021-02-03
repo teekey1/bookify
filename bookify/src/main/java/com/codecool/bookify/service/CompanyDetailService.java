@@ -1,10 +1,12 @@
 package com.codecool.bookify.service;
 
 import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.Company;
 import com.codecool.bookify.model.CompanyDetail;
 import com.codecool.bookify.repository.CompanyDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,4 +46,9 @@ public class CompanyDetailService implements HelperService<CompanyDetail>{
     public void delete(Long id) {
         companyDetailRepository.deleteById(id);
     }
+
+    public CompanyDetail getCompanyDetailsByCompanyId(Long id) {
+        return companyDetailRepository.findByCompanyId(id);
+    }
 }
+
