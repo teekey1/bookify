@@ -1,8 +1,10 @@
 package com.codecool.bookify.service;
 
 import com.codecool.bookify.exceptions.NotFoundException;
+import com.codecool.bookify.model.Company;
 import com.codecool.bookify.model.Role;
 import com.codecool.bookify.model.User;
+import com.codecool.bookify.repository.CompanyRepository;
 import com.codecool.bookify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,20 +12,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService implements HelperService<User> {
 
     protected UserRepository userRepository;
+    protected CompanyRepository companyRepository;
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private RoleService roleService;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    private CategoryService categoryService;
+
+    @Autowired
+    public UserService(UserRepository userRepository, CompanyRepository companyRepository) {
         this.userRepository = userRepository;
+        this.companyRepository = companyRepository;
 //        this.roleService = roleService;
     }
 
@@ -54,6 +62,7 @@ public class UserService implements HelperService<User> {
         newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         newUser.setPhone(user.getPhone());
         newUser.setActive(true);
+        newUser.setCompany(user.getCompany());
         newUser.getRoles().addAll(
                 user.getRoles()
                         .stream()

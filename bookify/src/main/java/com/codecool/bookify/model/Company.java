@@ -1,7 +1,6 @@
 package com.codecool.bookify.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +21,6 @@ public class Company {
     private String name;
     @JoinColumn (name = "category_id", nullable = false)
     @ManyToOne
-    @JsonIgnoreProperties({"id"})
     private Category category;
 
     public Company(String name, Category category) {
