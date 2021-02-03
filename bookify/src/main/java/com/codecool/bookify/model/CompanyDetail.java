@@ -19,8 +19,7 @@ public class CompanyDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(name = "company_id", nullable = false)
-    @ManyToOne
-    @JsonIgnoreProperties({"id"})
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Company company;
     @Column(nullable = false)
     private String city;
